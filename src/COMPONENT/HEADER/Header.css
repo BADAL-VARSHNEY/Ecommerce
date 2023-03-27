@@ -1,0 +1,177 @@
+
+.header-container{
+    width: 100%;
+    height: auto;
+    line-height: 70px;
+}
+
+.header-row{
+    width: 80%;
+    margin: auto;
+    height: 100%;
+}
+
+.nav-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-wrapper .logo{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.nav-wrapper .logo > img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.nav-wrapper .logo h1{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.navigation > ul {
+    display: flex;
+    align-items: center;
+    column-gap: 2.7rem;
+    margin-bottom: 0;  
+}
+
+.navigation > ul > li {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.nav__icon{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: .7rem;
+}
+
+
+.nav__icon span i{
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.badge{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 25%;
+    right: -12%;
+    content: ' ';
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-size: .7rem;
+    font-weight:  600;
+    z-index: 10;
+}
+
+.nav__icon  span  img{
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: .6rem;
+    vertical-align: middle;
+}
+
+.mobile_menu{
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    display: none;
+}
+
+.nav__active{
+    font-weight: 700 !important;
+}
+
+.fav__icon, 
+.cart__icon{
+position: relative;
+}
+
+.sticky__header{
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    position: sticky;
+    top:  0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 3px 3px 8px -3px #ddd;
+    background: #fff;
+}
+
+
+
+@media (max-width: 768px) {
+    .navigation{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.53 );
+        z-index: 9999;
+        display: none;
+    }
+    .navigation ul{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100%;
+        background: #fff;
+        z-index: 99999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .active__menu{
+        display: block;
+    }
+
+    .mobile_menu{
+        display: block;
+    }
+
+    .nav-wrapper .logo > img{
+        width: 1rem;
+        height: 1rem;
+    }
+    .nav-wrapper .logo h1{
+        font-size: 1rem;
+    }
+
+    .fav__icon i, 
+.cart__icon i{
+font-size: 1.2rem !important;
+}
+
+.mobile_menu{
+    font-size: 1rem !important;
+}
+.nav__icon  span  img{
+    width: 1.5rem;
+    height: 1.5rem;
+  
+}
+.header-row{
+    width: 85%;
+    margin: auto;
+    height: 100%;
+}
+    
+}

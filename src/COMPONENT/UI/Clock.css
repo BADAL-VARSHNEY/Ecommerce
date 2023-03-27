@@ -1,0 +1,59 @@
+.clock__wrapper,
+.clock__data {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.clock__day {
+  text-align: center;
+  color: #fff;
+  margin: 1.2rem 0 2rem 0;
+}
+.clock__day > h1 {
+  font-size: 25px;
+}
+.clock__day > h5 {
+  font-size: 18px;
+}
+
+.clock__data > span {
+  color: #fff;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0 1rem;
+}
+
+@media (max-width: 520px) {
+    .clock__day > h1 {
+        font-size: 16px;
+      }
+      .clock__day > h5 {
+        font-size: 12px;
+      }
+      .clock__wrapper,
+      .clock__data {
+        gap: 0px;
+      }
+
+      .clock__data > span {
+       margin: 12px;
+        font-size: 15px;
+        
+      }
+}
+
+@media (min-width: 520px) and (max-width: 768px) {
+  .clock__wrapper,
+  .clock__data {
+    gap: 0px;
+  }
+
+ 
+  .clock__day > h1 {
+    font-size: 20px;
+  }
+  .clock__day > h5 {
+    font-size: 16px;
+  }
+}
