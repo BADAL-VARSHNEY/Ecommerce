@@ -33,8 +33,11 @@ const Home = () => {
     let [loading, setLoading] = useState(true);
  const [trendingProduct, setTrendingProduct]=useState([])
  const [bestSalseProduct, setBestSalseProduct]=useState([])
- const [mobileProduct, setmobileProduct]=useState([])
- const [watchProduct, setwatchProduct]=useState([])
+ const [curtainProduct, setcurtainProduct]=useState([])
+ const [fanProduct, setfanProduct]=useState([])
+ const [tableProduct, settableProduct]=useState([])
+ const [bedProduct, setbedProduct]=useState([])
+ const [lightProduct, setlightProduct]=useState([])
 
  useEffect(()=>{
     const filteredTrendingProduct = productData.filter((item)=>{
@@ -43,16 +46,31 @@ const Home = () => {
      const filteredBestSalseProduct = productData.filter((item)=>{
        return  item.category === "sofa"
     }) 
-    const filteredMobileProduct = productData.filter((item)=>{
-       return  item.type === "mobile" 
+    const filteredCurtainProduct = productData.filter((item)=>{
+       return  item.category === "Curtain" 
     }) 
-    const filteredWatchProduct = productData.filter((item)=>{
-       return  item.category === "watch"
+    const filteredfanProduct = productData.filter((item)=>{
+       return  item.category === "fan"
     })
+    const filteredbedProduct = productData.filter((item)=>{
+        return  item.category === "bed"
+     })
+     const filteredtableProduct = productData.filter((item)=>{
+        return  item.category === "table"
+     })
+     const filteredlightProduct = productData.filter((item)=>{
+        return  item.category === "LightLamp"
+     })
+
+    
     setTrendingProduct(filteredTrendingProduct);
     setBestSalseProduct(filteredBestSalseProduct);
-    setmobileProduct(filteredMobileProduct);
-    setwatchProduct(filteredWatchProduct);
+    setcurtainProduct(filteredCurtainProduct);
+    setfanProduct(filteredfanProduct);
+    setbedProduct(filteredbedProduct);
+    settableProduct(filteredtableProduct);
+    setlightProduct(filteredlightProduct)
+
  }, [])
 
  useEffect(() => {
@@ -132,7 +150,8 @@ const Home = () => {
                         <div className="trending__col">
                             <h2 className='section__title'>New Arrivals</h2>
                         </div>
-                        <ProductsList data={mobileProduct} /> 
+                        <ProductsList data={curtainProduct} /> 
+                        <ProductsList data={tableProduct} /> 
                     </div>
                 </section>
                 
@@ -141,10 +160,23 @@ const Home = () => {
                         <div className="trending__col" style={{marginBottom: "2rem"}}>
                             <h2 className='section__title'>Popular in Category</h2>
                         </div>
-                        <ProductsList data={watchProduct} /> 
+                        <ProductsList data={fanProduct} /> 
+                        <ProductsList data={bedProduct} /> 
+                        <ProductsList data={lightProduct} /> 
                     </div>
                 </section>
+
+                {/* <section className='trending__products'>
+                    <div className="trending__container" >
+                        <div className="trending__col" style={{marginBottom: "2rem"}}>
+                            <h2 className='section__title'>Popular in Category</h2>
+                        </div>
+                        <ProductsList data={tableProduct} /> 
+                    </div>
+                </section> */}
             </Helmet>
+
+            
          }
         </>
     )
