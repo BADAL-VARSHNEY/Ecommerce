@@ -55,10 +55,13 @@
 }
 
 .Product___list-style{
+    width: 100%;
+    margin: auto;
     display: grid;
     grid-template-columns: 24% 24% 24% 24%;
     gap: 1rem;
 }
+
 
 
 
