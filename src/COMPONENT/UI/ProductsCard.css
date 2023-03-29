@@ -2,7 +2,7 @@
 .product__item{
     width: 100%;
     cursor: pointer;
-    margin-top: 1rem;
+    margin: 1rem 0;
 }
 .product__img{
     height: 70%;

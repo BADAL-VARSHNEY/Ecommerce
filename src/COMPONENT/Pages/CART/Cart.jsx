@@ -51,9 +51,9 @@ const Cart = () => {
                                      </div>
                                      <p>taxes and shipping will calculate in checkout</p>
                                      <div className='cart__btn_style'>
-                                        <button className='continue__btn'><Link to="/shop"> Continue Shopping</Link></button>
+                                        <button className='continue__btn'><Link to="/checkout"> Checkout</Link></button>
                                         <br />
-                                        <button className='continue__btn'><Link to="/checkout">Checkout </Link></button>
+                                        <button className='continue__btn'><Link to="/shop">Continue Shopping </Link></button>
                                      </div>
                             </div>
                         </div>
