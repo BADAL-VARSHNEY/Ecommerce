@@ -9,12 +9,18 @@ import ProductsList from '../../UI/ProductsList';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../../Redex/Slices/CardSlice';
 import { toast } from 'react-toastify';
+import productData from '../../../Assets/Data/Product'
+import FadeLoader from "react-spinners/FadeLoader";
+const override = {
+    display: "block",
+    margin: "300px auto",
+};
 
 
 
 
 const Detail = () => {
-
+    let [loading, setLoading] = useState(true);
     const reviewUser = useRef('')
     const reviewMsg = useRef('')
     const dispatch = useDispatch()
@@ -62,8 +68,21 @@ const Detail = () => {
     useEffect(()=>{
         window.scrollTo(0, 0)
     }, [product])
+
+    useEffect(() => {
+        (productData?.length > 0) ? setLoading(false) : setLoading(true)
+    }, [productData]);
+
+
     return (
         <>
+         {
+                loading ? <FadeLoader
+                    loading={true}
+                    color={'#000'}
+                    cssOverride={override}
+                    size={150}
+                /> :
             <Helmet title={productName}>
                 <CommonSection title={productName} />
 
@@ -161,6 +180,7 @@ const Detail = () => {
                     </div>
                 </section>
             </Helmet>
+         }
         </>
     )
 }

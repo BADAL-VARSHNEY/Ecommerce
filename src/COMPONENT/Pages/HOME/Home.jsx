@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link,} from 'react-router-dom';
 import heroImg from '../../../Assets/images/hero-img.png';
 import Helmet from '../../HELMET/Helmet';
 import './Home.css';
@@ -18,17 +18,6 @@ const override = {
 
 const Home = () => {
     const year = new Date().getFullYear();
-    // const [product, setProduct] = useState([]);
-
-    // const fetchData = () => {
-    //   return fetch("https://dummyjson.com/products/category/furniture?limit=4")
-    //         .then((response) => response.json())
-    //         .then((data) => setProduct(data.products));
-    // }
-  
-    // useEffect(() => {
-    //   fetchData();
-    // },[])
   
     let [loading, setLoading] = useState(true);
  const [trendingProduct, setTrendingProduct]=useState([])
@@ -72,6 +61,14 @@ const Home = () => {
     setlightProduct(filteredlightProduct)
 
  }, [])
+
+
+ useEffect(()=>{
+    window.scrollTo(0, 0)
+}, [productData])
+
+
+ 
 
  useEffect(() => {
     (productData?.length > 0) ? setLoading(false) : setLoading(true)
@@ -165,15 +162,6 @@ const Home = () => {
                         <ProductsList data={lightProduct} /> 
                     </div>
                 </section>
-
-                {/* <section className='trending__products'>
-                    <div className="trending__container" >
-                        <div className="trending__col" style={{marginBottom: "2rem"}}>
-                            <h2 className='section__title'>Popular in Category</h2>
-                        </div>
-                        <ProductsList data={tableProduct} /> 
-                    </div>
-                </section> */}
             </Helmet>
 
             

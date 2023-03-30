@@ -1,10 +1,12 @@
 import './Header.css'
 import logo from '../../Assets/images/eco-logo.png';
 import user from '../../Assets/images/user-icon.png';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion"
 import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { auth } from '../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const navLink = [
     {
@@ -21,37 +23,49 @@ const navLink = [
 
 const Header = () => {
 
-const headerRef = useRef(null);
-const menuRef = useRef(null);
-const navigate = useNavigate()
-
-const totalQuantity = useSelector(state=> state.cart.totalQuantity)
-
-const stickyheader = ()=>{
-    window.addEventListener('scroll', ()=>{
-        if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
-            headerRef.current.classList.add('sticky__header')
-        }else{
-            headerRef.current.classList.remove('sticky__header')
-        }
-    })
-}
-
-useEffect(()=>{
-  stickyheader()
-
-  return ()=> window.removeEventListener('scroll', stickyheader)
-}, [])
-
-const menuToggle = ()=> menuRef.current.classList.toggle('active__menu')
+    const headerRef = useRef(null);
+    const menuRef = useRef(null);
+    const navigate = useNavigate()
+    const profileActionRef = useRef(null)
+    const [userss,loading]=useAuthState(auth)
 
 
-const navigateToCart = ()=>{
-  navigate("/cart")
-}
+    const totalQuantity = useSelector(state => state.cart.totalQuantity)
+
+    const stickyheader = () => {
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                headerRef.current.classList.add('sticky__header')
+            } else {
+                headerRef.current.classList.remove('sticky__header')
+            }
+        })
+    }
+
+    useEffect(() => {
+        stickyheader()
+
+        return () => window.removeEventListener('scroll', stickyheader)
+    }, [])
+
+    const menuToggle = () => menuRef.current.classList.toggle('active__menu')
+
+
+    const navigateToCart = () => {
+        navigate("/cart")
+    }
+
+    const color = () => profileActionRef.current.classList.toggle('show__profileAction')
+
+    let handleLogout=()=>{
+        auth.signOut()
+        navigate('/login')
+    }
+    
+
 
     return (
-        <div className='header-container' ref={headerRef}>   
+        <div className='header-container' ref={headerRef}>
             <div className='header-row'>
                 <div className='nav-wrapper'>
                     <div className='logo'>
@@ -60,7 +74,7 @@ const navigateToCart = ()=>{
                             <h1>Cloudmart</h1>
                         </div>
                     </div>
-                    <div className='navigation'  ref={menuRef}  onClick={menuToggle} >
+                    <div className='navigation' ref={menuRef} onClick={menuToggle} >
                         <ul>
                             {navLink.map((item, index) => {
                                 return <li key={index}>
@@ -77,15 +91,22 @@ const navigateToCart = ()=>{
                             <span className='badge'>2</span>
                         </span>
                         <span className='cart__icon' onClick={navigateToCart} >
-                        <i class="ri-shopping-bag-line"></i>
+                            <i class="ri-shopping-bag-line"></i>
                             <span className='badge'>{totalQuantity}</span>
                         </span>
-                        <span>
-                            <motion.img whileTap={{ scale: 1.2 }} src={user} alt="" />
-                        </span>
-                    <div className='mobile_menu'>
-                        <span onClick={menuToggle} ><i class="ri-menu-line"></i></span>
-                    </div>
+                        <div className='profile' >
+                            <motion.img whileTap={{ scale: 1.2 }} src={user} alt="" onClick={color} />
+                            <div className="profile__action" ref={profileActionRef} onClick={color} >
+                            {
+                                userss ?  <h4 onClick={handleLogout}>Logout</h4> : 
+                                <Link to="/login"> <h4>Login</h4></Link>
+                            }
+                               
+                            </div>
+                        </div>
+                        <div className='mobile_menu'>
+                            <span onClick={menuToggle} ><i class="ri-menu-line"></i></span>
+                        </div>
                     </div>
 
                 </div>

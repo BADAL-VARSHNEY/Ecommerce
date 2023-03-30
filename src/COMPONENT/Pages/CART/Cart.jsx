@@ -5,14 +5,44 @@ import { cartActions } from '../../../Redex/Slices/CardSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import './Cart.css';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../firebase';
+import productData from '../../../Assets/Data/Product'
+import FadeLoader from "react-spinners/FadeLoader";
+import { useEffect, useState } from 'react';
+const override = {
+    display: "block",
+    margin: "300px auto",
+};
 
 
 const Cart = () => {
+    let [loadings, setLoadings] = useState(true);
+    const [userss,loading]=useAuthState(auth)
 
-    const cartitems = useSelector((state) => state.cart.cartitems)
-    const totalAmount = useSelector((state) => state.cart.totalAmount)
+    const {userData,cartitems,totalAmount} = useSelector((state) => state.cart)
+    console.log(userData,'user data')
+
+
+ useEffect(() => {
+    (productData?.length > 0) ? setLoadings(false) : setLoadings(true)
+}, [productData]);
+
+
+useEffect(()=>{
+    window.scrollTo(0, 0)
+}, [productData])
+
+
     return (
         <>
+        {
+                loadings ? <FadeLoader
+                    loading={true}
+                    color={'#000'}
+                    cssOverride={override}
+                    size={150}
+                /> :
             <Helmet title={" Cart "} >
                 <CommonSection title={'Shopping Cart'} />
                 <section>
@@ -51,7 +81,13 @@ const Cart = () => {
                                      </div>
                                      <p>taxes and shipping will calculate in checkout</p>
                                      <div className='cart__btn_style'>
-                                        <button className='continue__btn'><Link to="/checkout"> Checkout</Link></button>
+                                     {
+                                        
+                                        userss  ?
+                                     
+                                        <button className='continue__btn'><Link to="/checkout"> Checkout</Link></button>:
+                                        
+                                        <button className='continue__btn'><Link to="/login"> Checkout</Link></button>}
                                         <br />
                                         <button className='continue__btn'><Link to="/shop">Continue Shopping </Link></button>
                                      </div>
@@ -60,6 +96,7 @@ const Cart = () => {
                     </div>
                 </section>
             </Helmet>
+        }
         </>
     )
 };

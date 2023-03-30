@@ -21,7 +21,7 @@ const Footer = () => {
                 <h3>Top Categories</h3>
                 <table style={{ marginTop: '.8rem' }} >
                   <tr>
-                    <Link to="#" ><td>Mobile Phone</td></Link>
+                    <Link to="#" ><td>Modern Curtain</td></Link>
                   </tr>
                   <tr>
                     <Link to="#" ><td>Modern Sofa</td></Link>
@@ -30,10 +30,10 @@ const Footer = () => {
                     <Link to="#" ><td>Arm Chair</td></Link>
                   </tr>
                   <tr>
-                    <Link to="#" ><td>Smart Watches</td></Link>
+                    <Link to="#" ><td>Smart fan</td></Link>
                   </tr>
                   <tr>
-                    <Link to="#" ><td>Mobile Phone</td></Link>
+                    <Link to="#" ><td>LightLamp</td></Link>
                   </tr>
                 </table>
               </div>

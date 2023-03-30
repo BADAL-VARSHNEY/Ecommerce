@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     cartitems: [],
     totalAmount: 0,
-    totalQuantity: 0
+    totalQuantity: 0,
+    userData: ''
+    
 } 
 
 const cardSlice = createSlice({
@@ -45,7 +47,14 @@ const cardSlice = createSlice({
         state.totalQuantity = state.totalQuantity - existingItem.quantity
    }
         state.totalAmount = state.cartitems.reduce((total, item)=> total+ Number(item.price) * Number(item.quantity),0);
+     },
+
+     setUser: (state, action) =>{
+          state.userData = action.payload
      }
+
+
+
   }
   
 });

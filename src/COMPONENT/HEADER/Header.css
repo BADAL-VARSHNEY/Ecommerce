@@ -79,11 +79,36 @@
     z-index: 10;
 }
 
-.nav__icon  span  img{
+.nav__icon   img{
     width: 2rem;
     height: 2rem;
     margin-bottom: .6rem;
     vertical-align: middle;
+}
+
+.nav__icon .profile{
+    position: relative;
+    z-index: 9;
+}
+
+.nav__icon .profile .profile__action{
+    position: absolute;
+    top: 98%;
+    left: 0;
+    width: 150px;
+    z-index: 10;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: var(--card-bg-01);
+    line-height: 30px;
+    display: none;
+}
+
+.show__profileAction{
+    display: block !important;
 }
 
 .mobile_menu{
